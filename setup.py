@@ -23,9 +23,12 @@ except Exception as ex:
     print(ex)
     _version = get_version_tuple_fallback(os.path.join(_script_dir,'webcount'))
 
-with open(os.path.join(_script_dir, 'README.md')) as f:
-    readme = f.read()
-
+try:
+    with open(os.path.join(_script_dir, 'README.md')) as f:
+        readme = f.read()
+except Exception as e:
+    print(e)
+    readme = 'python CI/CD sandbox'
 
 setup(
     name='webcount',
