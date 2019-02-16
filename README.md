@@ -4,11 +4,28 @@ Personal repository for playing around with Python CI-CD process
 ## Reminders for myself:
 
 ### setup.py
-setup.py develop  # installs all dependencies and the library itself to allow
-                  # running and testing the script easily
-setup.py develop -u # --uninstall, removes the develop files
-setup.py build    # build the package
-setup.py clean -a # clean all files from /build
+
+Installing all dependencies and the library itself to allow running and testing the script easily:
+```bash
+setup.py develop
+```
+
+Remove the development installation
+```bash
+setup.py develop -u | --uninstall
+```
+
+Build the package
+```bash
+setup.py build
+setup.py bdist_wheel    # binary distribution, needs `wheel` installed first
+setup.py sdist          # source distribution
+```
+
+Clean all files from /build
+```bash
+setup.py clean -a
+```
 
 The setup.cfg file contains default options for commands of the setup.py script
 
