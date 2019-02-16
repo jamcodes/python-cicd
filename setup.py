@@ -2,6 +2,8 @@
 from setuptools import setup, find_packages
 import os
 
+_script_dir = os.path.realpath(os.path.dirname(__file__))
+
 def get_version_str(version_tuple):
     '''
     Given an iterable of int-like values
@@ -10,7 +12,7 @@ def get_version_str(version_tuple):
     return '.'.join(str(x) for x in version_tuple)
 
 def get_version_tuple_fallback(name):
-    init_path = os.path.join(os.path.dirname(__file__), name, '__init__.py')
+    init_path = os.path.join(name, '__init__.py')
     ver_line = next(filter(lambda l: l.startswith('VERSION'), open(init_path)))
     return get_version_str(eval(ver_line.split('=')[-1]))
 
@@ -19,9 +21,9 @@ try:
     _version = webcount.VERSION
 except Exception as ex:
     print(ex)
-    _version = get_version_tuple_fallback('webcount')
+    _version = get_version_tuple_fallback(os.path.join(_script_dir,'webcount'))
 
-with open('README.md') as f:
+with open(os.path.join(_script_dir, 'README.md')) as f:
     readme = f.read()
 
 
